@@ -10,6 +10,7 @@ import java.util.List;
 public class Calendar {
 	
 	private ArrayList<Event> events;
+	public static final String EVENT_CANNOT_BE_NULL = "Event cannot be null";
 	
 	/** Return the collection of events in the calendar
 	 * 
@@ -18,7 +19,7 @@ public class Calendar {
 	 * 
 	 * @return the collection of events in the calendar
 	 */
-	public ArrayList<Event> getEvents(){
+	public ArrayList<Event> getEvents() {
 		return this.events;
 	}
 	
@@ -40,10 +41,25 @@ public class Calendar {
 	 */
 	public void addEvent(Event event) {
 		if (event == null) {
-			throw new IllegalArgumentException("Event cannot be null");
+			throw new IllegalArgumentException(EVENT_CANNOT_BE_NULL);
 		}
 		
 		this.events.add(event);
+	}
+	
+	/** Removes an event from the calendar
+	 * 
+	 * @precondition event != null
+	 * @postcondition getEvents().size() == getEvents().size()@pre + 1
+	 * 
+	 * @param event event to be added to the calendar
+	 * @return true if the event was removed false otherwise
+	 */
+	public boolean removeEvent(Event event) {
+		if (event == null) {
+			throw new IllegalArgumentException(EVENT_CANNOT_BE_NULL);
+		}
+		return this.events.remove(event);
 	}
 	
 	/** Finds and returns the list of events in the calendar that would conflict with the specified event
@@ -57,15 +73,15 @@ public class Calendar {
 	 */
 	public List<Event> declareConflicts(Event event) {
 		if (event == null) {
-			throw new IllegalArgumentException("Event cannot be null");
+			throw new IllegalArgumentException(EVENT_CANNOT_BE_NULL);
 		}
 		List<Event> conflicts = new ArrayList<Event>();
 		
-		for(Event current: this.events) {
-			if(!event.getStartTime().isBefore(current.getStartTime()) && !event.getStartTime().isAfter(current.getEndTime())) {
+		for (Event current: this.events) {
+			if (!event.getStartTime().isBefore(current.getStartTime()) && !event.getStartTime().isAfter(current.getEndTime())) {
 				conflicts.add(current);
 			}
-			if(!event.getEndTime().isBefore(current.getStartTime()) && !event.getEndTime().isAfter(current.getEndTime())) {
+			if (!event.getEndTime().isBefore(current.getStartTime()) && !event.getEndTime().isAfter(current.getEndTime())) {
 				conflicts.add(current);
 			}
 		}

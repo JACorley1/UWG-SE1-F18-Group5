@@ -29,6 +29,7 @@ public class MainWindow {
     @FXML private URL location;
     @FXML private ListView<Event> eventList;
     @FXML private TextArea eventDetailsText;
+    private Event selectedEvent;
     
     private Calendar calendar;
 
@@ -37,9 +38,9 @@ public class MainWindow {
     	FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(Main.class.getResource("view/AddEvent.fxml"));
     	loader.load();
-    	Parent parent= loader.getRoot();
-    	Scene scene= new Scene(parent);
-    	Stage addEventStage= new Stage();
+    	Parent parent = loader.getRoot();
+    	Scene scene = new Scene(parent);
+    	Stage addEventStage = new Stage();
     	addEventStage.setTitle("Add New Event");
     	addEventStage.setScene(scene);
     	addEventStage.initModality(Modality.APPLICATION_MODAL);
@@ -49,19 +50,26 @@ public class MainWindow {
 
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
-    
+    @FXML
+    void removeEvent(ActionEvent event) {
+    	if (this.selectedEvent != null) {
+    		this.calendar.removeEvent(this.selectedEvent);
+    		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+    	}
+    }
     @FXML
     void selectEvent(MouseEvent event) {
     	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
-    	if(eventSelected != null) {
+    	if (eventSelected != null) {
     		this.eventDetailsText.setText(eventSelected.toStringFull());
+    		this.selectedEvent = eventSelected;
     	}
     }
 
     @FXML
     void initialize() {
-        assert eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
+        assert this.eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
+        assert this.eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
         this.calendar = new Calendar();
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));

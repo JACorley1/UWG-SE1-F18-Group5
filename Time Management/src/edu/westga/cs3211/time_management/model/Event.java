@@ -43,25 +43,25 @@ public class Event {
 	 * @param visibility visibility of the event
 	 */
 	public Event(String name, LocalDateTime start, LocalDateTime end, String location, String description, List<String> attendees, Visibility visibility) {
-		if(!EventDataValidator.checkName(name)) {
+		if (!EventDataValidator.checkName(name)) {
 			throw new IllegalArgumentException("Invalid name");
 		}
-		if(!EventDataValidator.checkStartTime(start)) {
+		if (!EventDataValidator.checkStartTime(start)) {
 			throw new IllegalArgumentException("Invalid start time");
 		}
-		if(!EventDataValidator.checkEndTime(start, end)) {
+		if (!EventDataValidator.checkEndTime(start, end)) {
 			throw new IllegalArgumentException("Invalid end time");
 		}
-		if(!EventDataValidator.checkAttendees(attendees)) {
+		if (!EventDataValidator.checkAttendees(attendees)) {
 			throw new IllegalArgumentException("Invalid attendees");
 		}
-		if(location == null) {
+		if (location == null) {
 			throw new IllegalArgumentException("Invalid location");
 		}
-		if(description == null) {
+		if (description == null) {
 			throw new IllegalArgumentException("Invalid description");
 		}
-		if(visibility == null) {
+		if (visibility == null) {
 			throw new IllegalArgumentException("Invalid visibility");
 		}
 		this.name = name;

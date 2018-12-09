@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  *         Liscum, Joseph Fuller, Jonathan Corley, Tristen Rivera, Tyler Scott,
  *         Dexter Tarver, Daniel Jeselnik, Dylan McCleskey, Justin Smith
  */
-public class EventDataValidator {
+public class  EventDataValidator {
 	
 	/**
 	 * Checks if the even name is valid
@@ -53,8 +53,10 @@ public class EventDataValidator {
 	}
 	
 	/**
+	 * checks to determine if the end time is correct
 	 * @authors TylerWingfield, JeremiahLiscum, JosephFuller
-	 * @param endTime, startTime
+	 * @param endTime the ending time
+	 * @param startTime the starting time
 	 * 
 	 * @precondition startTime != null
 	 * 
@@ -62,10 +64,10 @@ public class EventDataValidator {
 	 * 		   false if endTime is not or is not after startTime
 	 */
 	public static boolean checkEndTime(LocalDateTime startTime, LocalDateTime endTime) {
-		if(startTime == null) {
+		if (startTime == null) {
 			throw new IllegalArgumentException("startTime cannot be null");
 		}
-		if(endTime == null) {
+		if (endTime == null) {
 			return false;
 		}
 		return endTime.isAfter(startTime);
@@ -76,7 +78,7 @@ public class EventDataValidator {
 	 * @precondition none
 	 * @postcondition none
 	 * 					
-	 * @param String names the names of the attendees
+	 * @param names String names the names of the attendees
 	 * 
 	 * @return true  if list contains valid names (see checkName for more details)
 	 * 		   false if list contains one or more invalid names (see checkName for more details)
@@ -86,8 +88,8 @@ public class EventDataValidator {
 			return false;
 		}
 		
-		for(String name : names) {
-			if(!EventDataValidator.checkName(name)) {
+		for (String name : names) {
+			if (!EventDataValidator.checkName(name)) {
 				return false;
 			}
 		}

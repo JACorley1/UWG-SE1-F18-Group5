@@ -21,11 +21,9 @@ public enum Visibility {
 	public String toString() {
 		if (this == FRIENDS_ONLY) {
 			return "Friends Only";
-		}
-		else if (this == PUBLIC) {
+		} else if (this == PUBLIC) {
 			return "Public";
-		}
-		else {
+		} else {
 			return "Private";
 		}
 	}
