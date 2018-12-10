@@ -52,6 +52,7 @@ public class MainWindow {
 
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
+    
     private void displayErrorMessage(String errorMessage) {
 		Alert alert = new Alert(AlertType.ERROR, errorMessage);
 		alert.showAndWait();
