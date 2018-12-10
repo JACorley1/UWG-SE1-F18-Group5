@@ -13,8 +13,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -50,11 +52,17 @@ public class MainWindow {
 
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
+    private void displayErrorMessage(String errorMessage) {
+		Alert alert = new Alert(AlertType.ERROR, errorMessage);
+		alert.showAndWait();
+    }
     @FXML
     void removeEvent(ActionEvent event) {
     	if (this.selectedEvent != null) {
     		this.calendar.removeEvent(this.selectedEvent);
     		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+    	}else {
+    		this.displayErrorMessage("Please choose a method to delete");
     	}
     }
     @FXML
