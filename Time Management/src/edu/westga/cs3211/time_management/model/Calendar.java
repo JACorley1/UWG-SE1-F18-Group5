@@ -58,8 +58,22 @@ public class Calendar {
 		if (oldEvent == null || newEvent == null) {
 			throw new IllegalArgumentException(EVENT_CANNOT_BE_NULL);
 		}
-		this.events.remove(oldEvent);
-		this.events.add(newEvent);
+		int oldEventIndex = this.findIndex(oldEvent);
+		
+		this.events.add(oldEventIndex, newEvent);
+		this.events.remove(oldEventIndex+1);
+		}
+	
+	private int findIndex(Event event) {
+		int finalIndex = 0;
+		int index = 0;
+		for(Event currentEvent : this.events) {
+			if(currentEvent.equals(event)) {
+				finalIndex = index;
+			}
+			index++;
+		}
+		return finalIndex;
 	}
 	
 	/** Removes an event from the calendar
@@ -102,5 +116,14 @@ public class Calendar {
 		}
 		
 		return conflicts;
+	}
+	
+	
+	public String toString() {
+		String output = "";
+		for (Event currentEvent : this.events){
+			output += currentEvent.toStringFull();
+		}
+		return output;
 	}
 }
