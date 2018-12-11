@@ -110,7 +110,7 @@ public class UpdateEvent {
     	if (!EventDataValidator.checkStartTime(startTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
     	} else if (!EventDataValidator.checkEndTime(startTime, endTime)) {
-    		errorText += "Start time is  invalid" + System.lineSeparator();
+    		errorText += "End time is  invalid" + System.lineSeparator();
     	}
     	
     	if (!EventDataValidator.checkAttendees(attendees)) {
@@ -129,14 +129,8 @@ public class UpdateEvent {
     	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(5, 0));
     	List<String> attendees = this.attendeesList.getItems();
     	this.validateAddedEvent(name, startTime, endTime, attendees);
-    	String location = this.locationText.getText();
-    	if (location == null) {
-    		location = "";
-    	}
-    	String description = this.descriptionText.getText();
-    	if (description == null) {
-    		description = "";
-    	}
+    	String location = this.getLocationTextBox();
+    	String description = this.getDescriptionTextBox();
     	Visibility visibility = this.visibilityList.getValue();
     	Event newEvent = new Event(name, startTime, endTime, location, description, attendees, visibility);
     	List<Event> conflictingEvents = this.calendar.declareConflicts(newEvent);
@@ -147,17 +141,36 @@ public class UpdateEvent {
     			conflictText += currEvent.toString() + System.lineSeparator();
     		}
     	}
+    	Event oldEvent = this.activeEvent;
+    	this.activeEvent =  null;
     	String eventSummaryAndConflictText = "UPDATED EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS" + conflictText;
 		Alert alert = new Alert(AlertType.CONFIRMATION, eventSummaryAndConflictText);
 		alert.setTitle("Update this Event?");
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.isPresent() && result.get() == ButtonType.OK) {
-			this.calendar.updateEvent(this.activeEvent, newEvent);
+			this.calendar.updateEvent(oldEvent, newEvent);
 			((Node) (event.getSource())).getScene().getWindow().hide();
+		} else {
+			this.activeEvent = oldEvent; 
 		}
     }
-
+    
+    private String getLocationTextBox() {
+    	String location = this.locationText.getText();
+    	if (location == null) {
+    		location = "";
+    	}
+    	return location;
+    }
+    
+	private String getDescriptionTextBox() {
+	    String description = this.descriptionText.getText();
+		if (description == null) {
+			description = "";
+		}
+		return description;
+	}
     @FXML
     void initialize() {
         assert this.visibilityLabel != null : "fx:id=\"visibilityLabel\" was not injected: check your FXML file 'AddEvent.fxml'.";

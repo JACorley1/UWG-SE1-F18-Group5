@@ -89,7 +89,7 @@ public class AddEvent {
     	if (!EventDataValidator.checkStartTime(startTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
     	} else if (!EventDataValidator.checkEndTime(startTime, endTime)) {
-    		errorText += "Start time is  invalid" + System.lineSeparator();
+    		errorText += "End time is  invalid" + System.lineSeparator();
     	}
     	
     	if (!EventDataValidator.checkAttendees(attendees)) {
