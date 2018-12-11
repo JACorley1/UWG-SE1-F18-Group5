@@ -1,7 +1,7 @@
 package edu.westga.cs3211.time_management.model;
 
 /** Represents the visibility level of an Event.
- * 
+ * Code Coverage: 100%
  * @author Jonathan Corley
  *
  */

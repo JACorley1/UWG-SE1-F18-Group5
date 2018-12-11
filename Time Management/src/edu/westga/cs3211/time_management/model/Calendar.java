@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Store and manage a collection of events.
- * 
+ * Code Coverage: 100%
  * @author Jonathan Corley, Lucas Carlson, Carson Bedrosian, Nolan Williams, Kevin Flynn, Victoria Jenkins, Laura Smedley, Jonathan Nicholl, Brandon Walker
  */
 public class Calendar {

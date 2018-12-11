@@ -20,7 +20,6 @@ class TestCheckAttendees {
 	@Test
 	void testAttendeesIsEmpty() {
 		List<String> attendees = List.of();
-		
 		boolean result = EventDataValidator.checkAttendees(attendees);
 		
 		assertTrue(result);

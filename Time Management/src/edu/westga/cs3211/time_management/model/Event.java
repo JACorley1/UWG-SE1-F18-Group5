@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /** Store basic information for an event.
- * 
+ * Code Coverage: 100%
  * @author Lucas Carlson, Carson Bedrosian, Nolan Williams, Kevin Flynn, Jonathan Corley, Tristen Rivera, Tyler Scott, Dexter Tarver
  */
 public class Event {

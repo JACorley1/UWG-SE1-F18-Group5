@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 /**
  * Validate Event information.
  * 
+ * Code Coverage: 95.9% -4.1% since this class only has static methods the default constructor 
+ * cannot be tested as there is no reason to create an instance of this class
+ * 
+ * 
  * @author Dylan Knox, Kyle Riggs, Cody Graham, Tyler Wingfield, Jeremiah
  *         Liscum, Joseph Fuller, Jonathan Corley, Tristen Rivera, Tyler Scott,
  *         Dexter Tarver, Daniel Jeselnik, Dylan McCleskey, Justin Smith
