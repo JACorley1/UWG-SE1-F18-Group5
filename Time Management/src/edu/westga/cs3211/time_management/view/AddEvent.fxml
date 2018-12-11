@@ -24,10 +24,10 @@
       <DatePicker fx:id="endTimeDate" layoutX="89.0" layoutY="84.0" />
       <TextField fx:id="locationText" layoutX="89.0" layoutY="119.0" />
       <TextField fx:id="descriptionText" layoutX="89.0" layoutY="155.0" />
-      <ComboBox fx:id="attendeesList" layoutX="88.0" layoutY="223.0" prefWidth="150.0" />
-      <Button layoutX="245.0" layoutY="190.0" mnemonicParsing="false" onAction="#addAttendee" text="Add" />
-      <Button layoutX="245.0" layoutY="223.0" mnemonicParsing="false" onAction="#removeAttendee" text="Remove" />
       <TextField fx:id="newAttendeeText" layoutX="89.0" layoutY="190.0" />
+      <Button layoutX="245.0" layoutY="190.0" mnemonicParsing="false" onAction="#addAttendee" text="Add" />
+      <ComboBox fx:id="attendeesList" layoutX="88.0" layoutY="223.0" prefWidth="150.0" />
+      <Button layoutX="245.0" layoutY="223.0" mnemonicParsing="false" onAction="#removeAttendee" text="Remove" />
       <ComboBox fx:id="visibilityList" layoutX="88.0" layoutY="255.0" prefWidth="150.0" />
       <Button layoutX="73.0" layoutY="300.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
       <Button layoutX="152.0" layoutY="300.0" mnemonicParsing="false" onAction="#addEvent" text="Add" />
