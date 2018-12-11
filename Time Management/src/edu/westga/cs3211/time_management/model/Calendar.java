@@ -52,7 +52,8 @@ public class Calendar {
 	 * @precondition event != null
 	 * @postcondition the given old event will be updated to the new event
 	 * 
-	 * @param event event to be added to the calendar
+	 * @param oldEvent the event to be updated
+	 * @param newEvent the updated event
 	 */
 	public void updateEvent(Event oldEvent, Event newEvent) {
 		if (oldEvent == null || newEvent == null) {
@@ -61,14 +62,14 @@ public class Calendar {
 		int oldEventIndex = this.findIndex(oldEvent);
 		
 		this.events.add(oldEventIndex, newEvent);
-		this.events.remove(oldEventIndex+1);
-		}
+		this.events.remove(oldEventIndex + 1);
+	}
 	
 	private int findIndex(Event event) {
 		int finalIndex = 0;
 		int index = 0;
-		for(Event currentEvent : this.events) {
-			if(currentEvent.equals(event)) {
+		for (Event currentEvent : this.events) {
+			if (currentEvent.equals(event)) {
 				finalIndex = index;
 			}
 			index++;
@@ -118,10 +119,15 @@ public class Calendar {
 		return conflicts;
 	}
 	
-	
+	/**
+	 * Provides a description of the calendar
+	 * @precondition none
+	 * @postcondition none
+	 * @return a description of the calendar
+	 */
 	public String toString() {
 		String output = "";
-		for (Event currentEvent : this.events){
+		for (Event currentEvent : this.events) {
 			output += currentEvent.toStringFull();
 		}
 		return output;
