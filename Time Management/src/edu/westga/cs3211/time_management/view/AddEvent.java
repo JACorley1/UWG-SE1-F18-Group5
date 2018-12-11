@@ -61,7 +61,7 @@ public class AddEvent {
     	String name = this.newAttendeeText.getText();
 		if (EventDataValidator.checkName(name)) {
     		this.attendeesList.getItems().add(name);
-    		Alert alert = new Alert(AlertType.CONFIRMATION, "Attendee '"+name+"' successfully added.");
+    		Alert alert = new Alert(AlertType.CONFIRMATION, "Attendee '" + name + "' successfully added.");
     		alert.setTitle("Attendee added.");
     		alert.show();
     	} else {
@@ -88,7 +88,7 @@ public class AddEvent {
     	}
     	if (!EventDataValidator.checkStartTime(startTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
-    	} else if (!EventDataValidator.checkStartTime(endTime)) {
+    	} else if (!EventDataValidator.checkEndTime(startTime, endTime)) {
     		errorText += "Start time is  invalid" + System.lineSeparator();
     	}
     	

@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /** Codebehind for the UpdateEvent Scene.
+ * @author Ewan Peterson
  */
 public class UpdateEvent {
 
@@ -50,7 +51,12 @@ public class UpdateEvent {
 	private Calendar calendar;
 	private Event activeEvent;
 	
-	
+	/**
+	 * This sets the activate event
+	 * @precondition none
+	 * @postcondition The active event!= null
+	 * @param event the event that is activated
+	 */
 	public void setActiveEvent(Event event) {
 		this.activeEvent = event;
 		this.nameText.setText(this.activeEvent.getName());
@@ -76,7 +82,7 @@ public class UpdateEvent {
     	String name = this.newAttendeeText.getText();
 		if (EventDataValidator.checkName(name)) {
     		this.attendeesList.getItems().add(name);
-    		Alert alert = new Alert(AlertType.CONFIRMATION, "Attendee '"+name+"' successfully added.");
+    		Alert alert = new Alert(AlertType.CONFIRMATION, "Attendee '" + name + "' successfully added.");
     		alert.setTitle("Attendee added.");
     		alert.show();
     	} else {
@@ -103,7 +109,7 @@ public class UpdateEvent {
     	}
     	if (!EventDataValidator.checkStartTime(startTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
-    	} else if (!EventDataValidator.checkStartTime(endTime)) {
+    	} else if (!EventDataValidator.checkEndTime(startTime, endTime)) {
     		errorText += "Start time is  invalid" + System.lineSeparator();
     	}
     	
@@ -115,6 +121,7 @@ public class UpdateEvent {
     		return;
     	}
     }
+    
     @FXML
     void updateEvent(ActionEvent event) {
     	String name = this.nameText.getText();
@@ -136,17 +143,15 @@ public class UpdateEvent {
     	String eventText = newEvent.toStringFull();
     	String conflictText = "";
     	for (Event currEvent : conflictingEvents) {
-    		if(!currEvent.equals(this.activeEvent)) {
+    		if (!currEvent.equals(this.activeEvent)) {
     			conflictText += currEvent.toString() + System.lineSeparator();
     		}
-    		
     	}
     	String eventSummaryAndConflictText = "UPDATED EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS" + conflictText;
 		Alert alert = new Alert(AlertType.CONFIRMATION, eventSummaryAndConflictText);
 		alert.setTitle("Update this Event?");
 		
 		Optional<ButtonType> result = alert.showAndWait();
-		
 		if (result.isPresent() && result.get() == ButtonType.OK) {
 			this.calendar.updateEvent(this.activeEvent, newEvent);
 			((Node) (event.getSource())).getScene().getWindow().hide();

@@ -65,7 +65,7 @@ public class MainWindow {
     		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     		this.eventDetailsText.setText("");
     		this.selectedEvent = null;
-    	}else {
+    	} else {
     		this.displayErrorMessage("Please choose a method to delete");
     	}
     }
