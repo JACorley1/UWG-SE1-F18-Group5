@@ -63,7 +63,7 @@ public class MainWindow {
     	if (this.selectedEvent != null) {
     		String removeEvent = "Please confirm to delete: " + this.selectedEvent.toStringFull();
     		Alert alert = new Alert(AlertType.CONFIRMATION, removeEvent);
-    		alert.setTitle("Create New Event?");
+    		alert.setTitle("Remove Event?");
     		
     		Optional<ButtonType> result = alert.showAndWait();
     		
