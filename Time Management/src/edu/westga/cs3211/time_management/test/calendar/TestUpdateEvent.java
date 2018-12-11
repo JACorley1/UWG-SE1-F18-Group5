@@ -134,4 +134,37 @@ class TestUpdateEvent {
 		assertEquals(actualCalendar.toString(), myCalendar.toString());
 	}
 
+	@Test
+	public void testUpdateLastEvent() {
+		Calendar myCalendar = new  Calendar();
+		LocalDateTime start0 = LocalDateTime.now().plusDays(1);
+		LocalDateTime end0 = start0.plusDays(1);
+		ArrayList<String> attendees0 = new ArrayList<String>();
+		attendees0.add("jack");
+		Event myEvent0 = new Event("First", start0, end0, "school", "homework", attendees0, Visibility.PUBLIC);
+		
+		LocalDateTime start1 = LocalDateTime.now().plusDays(2);
+		LocalDateTime end1 = start1.plusDays(1);
+		ArrayList<String> attendees1 = new ArrayList<String>();
+		attendees1.add("jill");
+		Event myEvent1 = new Event("Second", start1, end1, "school", "project", attendees1, Visibility.PUBLIC);
+		
+		LocalDateTime start2 = LocalDateTime.now().plusDays(3);
+		LocalDateTime end2 = start2.plusDays(1);
+		ArrayList<String> attendees2 = new ArrayList<String>();
+		attendees2.add("lynn");
+		Event myEvent2 = new Event("Third", start2, end2, "school", "project", attendees2, Visibility.PUBLIC);
+		
+		myCalendar.addEvent(myEvent0);
+		myCalendar.addEvent(myEvent1);
+		myCalendar.addEvent(myEvent2);
+		
+		myCalendar.updateEvent(myEvent2, myEvent0);
+		
+		Calendar actualCalendar = new Calendar();
+		actualCalendar.addEvent(myEvent0);
+		actualCalendar.addEvent(myEvent1);
+		actualCalendar.addEvent(myEvent0);
+		assertEquals(actualCalendar.toString(), myCalendar.toString());
+	}
 }
