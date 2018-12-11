@@ -30,6 +30,6 @@
       <Button layoutX="245.0" layoutY="223.0" mnemonicParsing="false" onAction="#removeAttendee" text="Remove" />
       <ComboBox fx:id="visibilityList" layoutX="88.0" layoutY="255.0" prefWidth="150.0" />
       <Button layoutX="73.0" layoutY="300.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-      <Button layoutX="152.0" layoutY="300.0" mnemonicParsing="false" onAction="#addEvent" text="Add" />
+      <Button layoutX="152.0" layoutY="300.0" mnemonicParsing="false" onAction="#addEvent" text="Add Event" />
    </children>
 </AnchorPane>

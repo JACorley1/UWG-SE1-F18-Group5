@@ -64,6 +64,7 @@ public class MainWindow {
     		this.calendar.removeEvent(this.selectedEvent);
     		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     		this.eventDetailsText.setText("");
+    		this.selectedEvent = null;
     	}else {
     		this.displayErrorMessage("Please choose a method to delete");
     	}
@@ -71,7 +72,7 @@ public class MainWindow {
     @FXML
     void updateEvent(ActionEvent event) throws IOException {
     	if (this.selectedEvent == null) {
-    		this.displayErrorMessage("Please choose a method to update");
+    		this.displayErrorMessage("Please choose an event  to update");
     		return;
     	}
     	FXMLLoader loader = new FXMLLoader();
