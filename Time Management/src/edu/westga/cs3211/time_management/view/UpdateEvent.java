@@ -77,6 +77,9 @@ public class UpdateEvent {
     	String name = this.newAttendeeText.getText();
 		if (EventDataValidator.checkName(name)) {
     		this.attendeesList.getItems().add(name);
+    		Alert alert = new Alert(AlertType.CONFIRMATION, "Attendee '"+name+"' successfully added.");
+    		alert.setTitle("Attendee added.");
+    		alert.show();
     	} else {
 			this.displayErrorMessage("Invalid name for new attendee: " + name);
 		}
@@ -138,7 +141,7 @@ public class UpdateEvent {
     	}
     	String eventSummaryAndConflictText = "NEW EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS" + conflictText;
 		Alert alert = new Alert(AlertType.CONFIRMATION, eventSummaryAndConflictText);
-		alert.setTitle("Update thisEvent?");
+		alert.setTitle("Update this Event?");
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		

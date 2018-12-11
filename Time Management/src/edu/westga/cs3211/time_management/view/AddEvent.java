@@ -61,6 +61,9 @@ public class AddEvent {
     	String name = this.newAttendeeText.getText();
 		if (EventDataValidator.checkName(name)) {
     		this.attendeesList.getItems().add(name);
+    		Alert alert = new Alert(AlertType.CONFIRMATION, "Attendee '"+name+"' successfully added.");
+    		alert.setTitle("Attendee added.");
+    		alert.show();
     	} else {
 			this.displayErrorMessage("Invalid name for new attendee: " + name);
 		}
