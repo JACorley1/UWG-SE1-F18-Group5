@@ -47,10 +47,25 @@ public class Calendar {
 		this.events.add(event);
 	}
 	
+	/** Updates an event from the calendar
+	 * 
+	 * @precondition event != null
+	 * @postcondition the given old event will be updated to the new event
+	 * 
+	 * @param event event to be added to the calendar
+	 */
+	public void updateEvent(Event oldEvent, Event newEvent) {
+		if (oldEvent == null || newEvent == null) {
+			throw new IllegalArgumentException(EVENT_CANNOT_BE_NULL);
+		}
+		this.events.remove(oldEvent);
+		this.events.add(newEvent);
+	}
+	
 	/** Removes an event from the calendar
 	 * 
 	 * @precondition event != null
-	 * @postcondition getEvents().size() == getEvents().size()@pre + 1
+	 * @postcondition getEvents().size() == getEvents().size()@pre - 1
 	 * 
 	 * @param event event to be added to the calendar
 	 * @return true if the event was removed false otherwise

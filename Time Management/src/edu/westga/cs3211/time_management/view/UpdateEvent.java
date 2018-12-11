@@ -4,7 +4,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -137,17 +136,19 @@ public class UpdateEvent {
     	String eventText = newEvent.toStringFull();
     	String conflictText = "";
     	for (Event currEvent : conflictingEvents) {
-    		conflictText += currEvent.toString() + System.lineSeparator();
+    		if(!currEvent.equals(this.activeEvent)) {
+    			conflictText += currEvent.toString() + System.lineSeparator();
+    		}
+    		
     	}
-    	String eventSummaryAndConflictText = "NEW EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS" + conflictText;
+    	String eventSummaryAndConflictText = "UPDATED EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS" + conflictText;
 		Alert alert = new Alert(AlertType.CONFIRMATION, eventSummaryAndConflictText);
 		alert.setTitle("Update this Event?");
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		
 		if (result.isPresent() && result.get() == ButtonType.OK) {
-			this.calendar.removeEvent(this.activeEvent);
-			this.calendar.addEvent(newEvent);
+			this.calendar.updateEvent(this.activeEvent, newEvent);
 			((Node) (event.getSource())).getScene().getWindow().hide();
 		}
     }

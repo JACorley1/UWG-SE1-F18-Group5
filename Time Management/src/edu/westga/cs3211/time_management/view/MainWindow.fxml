@@ -22,7 +22,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnRemove" layoutX="236.0" layoutY="544.0" mnemonicParsing="false" onAction="#removeEvent" text="Remove Event" />
-      <Button fx:id="btnUpdate" layoutX="399.0" layoutY="544.0" mnemonicParsing="false" onAction="#updateEvent" text="Update" />
+      <Button  layoutX="236.0" layoutY="544.0" mnemonicParsing="false" onAction="#removeEvent" text="Remove Event" />
+      <Button  layoutX="399.0" layoutY="544.0" mnemonicParsing="false" onAction="#updateEvent" text="Update Event" />
    </children>
 </AnchorPane>

@@ -34,7 +34,8 @@ public class MainWindow {
     private Event selectedEvent;
     
     private Calendar calendar;
-
+    
+    
     @FXML
     void addEvent(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader();
@@ -103,7 +104,7 @@ public class MainWindow {
     void initialize() {
         assert this.eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
         assert this.eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
-
+        this.eventDetailsText.setEditable(false);
         this.calendar = new Calendar();
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
