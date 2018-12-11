@@ -67,6 +67,29 @@ public class MainWindow {
     	}
     }
     @FXML
+    void updateEvent(ActionEvent event) throws IOException {
+    	if (this.selectedEvent == null) {
+    		this.displayErrorMessage("Please choose a method to update");
+    		return;
+    	}
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(Main.class.getResource("view/UpdateEvent.fxml"));
+    	loader.load();
+    	Parent parent = loader.getRoot();
+    	Scene scene = new Scene(parent);
+    	Stage updateEventStage = new Stage();
+    	updateEventStage.setTitle("Update Event");
+    	updateEventStage.setScene(scene);
+    	updateEventStage.initModality(Modality.APPLICATION_MODAL);
+    	UpdateEvent updateDialog = loader.getController();
+    	updateDialog.setCalendar(this.calendar);
+    	updateDialog.setActiveEvent(this.selectedEvent);
+    	updateEventStage.showAndWait();
+        this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+        this.eventDetailsText.setText("");
+    }
+    
+    @FXML
     void selectEvent(MouseEvent event) {
     	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
     	if (eventSelected != null) {
